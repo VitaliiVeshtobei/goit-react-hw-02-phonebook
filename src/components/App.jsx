@@ -33,6 +33,18 @@ export class App extends React.Component {
   changeFilter = evt => {
     this.setState({ filter: evt.currentTarget.value });
   };
+  deleteContact = id => {
+    // console.log(id);
+    const index = this.state.contacts.findIndex(contact => contact.id === id);
+    // console.log(index);
+    // const newContacts = this.state.contacts.splice(index, 1);
+    // console.log(newContacts);
+    // this.setState(prevState => ({
+    //   contacts: [...prevState.contacts.splice(index, 1)],
+    // }));
+    this.setState(this.state.contacts.splice(index, 1));
+    // removeContact = this.state.contacts.indexOf(this.state.contacts);
+  };
 
   render() {
     const normalizedFilter = this.state.filter.toLowerCase();
@@ -47,7 +59,10 @@ export class App extends React.Component {
         <div>
           <h2>Contacts</h2>
           <Filter value={this.state.filter} onChange={this.changeFilter} />
-          <Contacts contacts={visibleContacts} />
+          <Contacts
+            contacts={visibleContacts}
+            onDeleteContact={this.deleteContact}
+          />
         </div>
       </div>
     );
