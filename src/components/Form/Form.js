@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Input, Button, Label } from './FormStyled';
+
 export class Form extends Component {
   state = {
     name: '',
     number: '',
   };
   handleChange = evt => {
-    //   console.log(evt.target.value);
     console.log(evt.currentTarget.name);
     this.setState({
       [evt.currentTarget.name]: evt.currentTarget.value,
@@ -26,9 +27,9 @@ export class Form extends Component {
     return (
       <div>
         <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <label htmlFor="name">
+          <Label htmlFor="name">
             Name
-            <input
+            <Input
               type="text"
               name="name"
               value={this.state.name}
@@ -37,10 +38,10 @@ export class Form extends Component {
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
             />
-          </label>
-          <label htmlFor="number">
+          </Label>
+          <Label htmlFor="number">
             Number
-            <input
+            <Input
               type="tel"
               name="number"
               onChange={this.handleChange}
@@ -49,8 +50,8 @@ export class Form extends Component {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
             />
-          </label>
-          <button type="submit">Add contact</button>
+          </Label>
+          <Button type="submit">Add contact</Button>
         </form>
       </div>
     );
