@@ -34,9 +34,9 @@ export class App extends React.Component {
     this.setState({ filter: evt.currentTarget.value });
   };
   deleteContact = id => {
-    const index = this.state.contacts.findIndex(contact => contact.id === id);
-
-    this.setState(this.state.contacts.splice(index, 1));
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
+    }));
   };
 
   render() {
